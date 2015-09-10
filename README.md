@@ -30,9 +30,9 @@ var swiper = new Swipe({
             	dom: document.getElementById("swipeWrapper")
             });
 ```
-3.使用提示:
-3.1.onSwipeStart返回true时，才会成功执行后面的滑动过程。
-3.2.每次滑动后，都会执行onSwipeEnd函数，排除连续滑动，连续滑动，只会执行一次onSwipeEnd函数。
-3.3.默认不开启手指滑动，页面跟随滑动的效果。
-4.查看网址，学习创建该插件的过程。(做成一个能用的模块很容易，很容易模仿，但是创作的思路会提供宝贵的经验，尤其是对于初学者来说。)
-[http://www.hui52.com/archives/977.html]
+3.使用提示:<br/>
+3.1.onSwipeStart返回true时，才会成功执行后面的滑动过程。<br/>
+3.2.每次滑动后，都会执行onSwipeEnd函数，排除连续滑动，连续滑动，只会执行一次onSwipeEnd函数。<br/>
+3.3.默认不开启手指滑动，页面跟随滑动的效果。<br/>
+4.查看网址，学习创建该插件的过程。(做成一个能用的模块很容易，很容易模仿，但是创作的思路会提供宝贵的经验，尤其是对于初学者来说。)<br/>
+[http://www.hui52.com/archives/977.html]<br/>
