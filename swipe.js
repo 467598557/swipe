@@ -14,7 +14,8 @@ function Swipe(e) {
 	var swipeBody, children, swipeBodyStyle, startPos, endPos, movePos, timer,
 		UP = 1,
 		DOWN = -1,
-		SWIPE_LIMITED_SIZE = 100;
+		SWIPE_LIMITED_SIZE = 100,
+		DEFAULT_SWIPE_TIME = 400;
 	var handler = {
 		currentIndex: function() {
 			var currentIndex = that.currentIndex;
@@ -83,7 +84,7 @@ function Swipe(e) {
 		animate: {
 			run: function(from, to, speed, callback) {
 			    if (!speed) {
-		      		swipeBodyStyle.top = to + 'px';
+		      		swipeBodyStyle.top = to + '%';
 			      return;
 			    }
 
@@ -91,14 +92,14 @@ function Swipe(e) {
 			    timer = setInterval(function() {
 		     	 	var timeElap = +new Date - start;
 	     		 	if (timeElap > speed) {
-			        	swipeBodyStyle.top = to + 'px';
+			        	swipeBodyStyle.top = to + '%';
 			        	callback && callback();
 
 			        	clearInterval(timer);
 			        	return;
 			      	}
 
-		     		swipeBodyStyle.top = (( (to - from) * (Math.floor((timeElap / speed) * 100) / 100) ) + from) + 'px';
+		     		swipeBodyStyle.top = (( (to - from) * (Math.floor((timeElap / speed) * 100) / 100) ) + from) + '%';
 			    }, 4);
 		  	},
 			stop: function() {
@@ -145,9 +146,9 @@ function Swipe(e) {
 				Helper.resetIndex();
 				if(that.e.continues && that.isResetIndex) {
 					if(that.transitions) {
-						Helper.setTransitionYMove(-that.currentIndex*window.innerHeight+"px", 0);
+						Helper.setTransitionYMove(-that.currentIndex*100+"%", 0);
 					} else {
-						swipeBodyStyle.top = -that.currentIndex*window.innerHeight+"px";
+						swipeBodyStyle.top = -that.currentIndex*100+"%";
 					}
 				}
 
@@ -161,6 +162,7 @@ function Swipe(e) {
 			},
 			touchMove: function(e) {
 				e.preventDefault && e.preventDefault();
+				console.log(that.e.floowSwipe);
 				if(!that.e.floowSwipe) {
 					movePos = {
 						time: 0
@@ -170,12 +172,13 @@ function Swipe(e) {
 				movePos = Helper.getEventPos(e);	
 				movePos.time = +new Date();
 			    
-			    var distPosY = -that.currentIndex*window.innerHeight+movePos.y-startPos.y;
+			    var distPosY = "calc("+(-that.currentIndex*100+"% + "+(movePos.y-startPos.y))+"px)";
+			    console.log(distPosY);
 			    // 同步拖动过程
 			    if(that.transitions) {
-			    	Helper.setTransitionYMove((distPosY)+"px", 0);
+			    	Helper.setTransitionYMove(distPosY, 0);
 			    } else {
-					Helper.animate.stop().run(-that.currentIndex*window.innerHeight, distPosY, 0);
+					Helper.animate.stop().run(-that.currentIndex*100, distPosY, 0);
 			    }
 			},
 			touchEnd: function(e) {
@@ -183,9 +186,9 @@ function Swipe(e) {
 		     	if(Math.abs(endPos.y - startPos.y) < that.swipeLimitedSize) {
 		     		// 还原设置
 		     		if(that.transitions) {
-		     			Helper.setTransitionYMove((-that.currentIndex*window.innerHeight)+"px", that.e.swipeTime / 2);
+		     			Helper.setTransitionYMove((-that.currentIndex*100)+"%", that.e.swipeTime / 2);
 		     		} else {
-		     			Helper.animate.stop().run(parseFloat(swipeBodyStyle.top), -that.currentIndex*window.innerHeight, 0);
+		     			Helper.animate.stop().run(parseFloat(swipeBodyStyle.top), -that.currentIndex*100, 0);
 		     		}
 		     		return;
 		     	}
@@ -232,7 +235,7 @@ function Swipe(e) {
 		e.startIndex = e.startIndex ? e.startIndex-1 : 0;
 		e.defaultStartIndex = 0;
 		e.defaultEndIndex = children.length-1;
-		e.swipeTime = e.swipeTime || 500;
+		e.swipeTime = e.swipeTime || DEFAULT_SWIPE_TIME;
 		that.e = e;
 		that.currentIndex = 0;
 		that.swiping = false;
@@ -280,9 +283,9 @@ function Swipe(e) {
 		var time = that.e.swipeTime - moveCostTime;
 		time = time < that.e.swipeTime/3 ? that.e.swipeTime/3 : time;
 		if(that.transitions) {
-			Helper.setTransitionYMove(-index*window.innerHeight+"px", time);
+			Helper.setTransitionYMove(-index*100+"%", time);
 		} else {
-			Helper.animate.stop().run((parseFloat(swipeBodyStyle.top) || 0), -index*window.innerHeight, time, Helper.eventHandlers.swipeEnd);
+			Helper.animate.stop().run((parseFloat(swipeBodyStyle.top) || 0), -index*100, time, Helper.eventHandlers.swipeEnd);
 		}
 	}
 	function quickSwipe(index, callback) {
@@ -297,9 +300,9 @@ function Swipe(e) {
 			console.log(that.isResetIndex, that.currentIndex);
 		}
 		if(that.transitions) {
-			Helper.setTransitionYMove(-that.currentIndex*window.innerHeight+"px", 0);
+			Helper.setTransitionYMove(-that.currentIndex*100+"%", 0);
 		} else {
-			Helper.animate.stop().run((parseFloat(swipeBodyStyle.top) || 0), -that.currentIndex*window.innerHeight, 0);
+			Helper.animate.stop().run((parseFloat(swipeBodyStyle.top) || 0), -that.currentIndex*100, 0);
 		}
 		
 		that.swiping = false;
