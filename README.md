@@ -1,6 +1,6 @@
 # swipe
 ## 一个支持竖向滑动的js插件，不依赖于其他库的轻量级滑动库
-(只需将swipe.js或者swipe.min.js添加到页面中。)
+(只需将swipe.js或者swipe.min.js添加到页面中。)<br/>
 1.使用时需要new Swipe(e), 主要参数如下:
 ```javascript
  /**
