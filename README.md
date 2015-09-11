@@ -35,7 +35,7 @@ var swiper = new Swipe({
 3.1.onSwipeStart返回true时，才会成功执行后面的滑动过程。<br/>
 3.2.每次滑动后，都会执行onSwipeEnd函数，排除连续滑动，连续滑动，只会执行一次onSwipeEnd函数。<br/>
 3.3.默认不开启手指滑动，页面跟随滑动的效果。<br/>
-3.4.目前只支持全屏模式，之后会支持页面内部局部模块滑动。<br/>
+3.4.可支持非全屏滑动。<br/>
 4.插件开发历程:<br/>
 4.1.[http://www.hui52.com/archives/893.html]<br/>
 4.2.[http://www.hui52.com/archives/907.html]<br/>
