@@ -38,3 +38,10 @@ var swiper = new Swipe({
 3.4.目前只支持全屏模式，之后会支持页面内部局部模块滑动。<br/>
 4.查看网址，学习创建该插件的过程。(做成一个能用的模块很容易，很容易模仿，但是创作的思路会提供宝贵的经验，尤其是对于初学者来说。)<br/>
 [http://www.hui52.com/archives/977.html]<br/>
+4.插件开发历程:
+4.1.[http://www.hui52.com/archives/893.html]<br/>
+4.2.[http://www.hui52.com/archives/907.html]<br/>
+4.3.[http://www.hui52.com/archives/924.html]<br/>
+4.4.[http://www.hui52.com/archives/936.html]<br/>
+4.5.[http://www.hui52.com/archives/941.html]<br/>
+4.6.[http://www.hui52.com/archives/977.html]<br/>
