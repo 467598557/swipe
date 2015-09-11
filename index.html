@@ -9,7 +9,7 @@
 				width:100%; height:100%; overflow:hidden; margin:0; padding:0;
 			}
 			.swipeWrapper {
-				height:100%; width:100%; overflow:hidden; position:relative;
+				height:50%; width:100%; overflow:hidden; position:relative; box-shadow:0px 0px 5px black inset;
 			}
 			.swipeBody {
 				height:100%; width:100%; position:absolute;
@@ -37,8 +37,8 @@
 		<script type="text/javascript" >
 			var swiper = new Swipe({
 				continues: true,
-				swipeTime: 1000,
 				swipeWhenSwiping: true,
+				floowSwipe: true,
 				onSwipeStart: function() {
 					console.log("start");
 					return true;
