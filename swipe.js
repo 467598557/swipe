@@ -162,7 +162,6 @@ function Swipe(e) {
 			},
 			touchMove: function(e) {
 				e.preventDefault && e.preventDefault();
-				console.log(that.e.floowSwipe);
 				if(!that.e.floowSwipe) {
 					movePos = {
 						time: 0
@@ -173,7 +172,6 @@ function Swipe(e) {
 				movePos.time = +new Date();
 			    
 			    var distPosY = "calc("+(-that.currentIndex*100+"% + "+(movePos.y-startPos.y))+"px)";
-			    console.log(distPosY);
 			    // 同步拖动过程
 			    if(that.transitions) {
 			    	Helper.setTransitionYMove(distPosY, 0);
@@ -289,16 +287,12 @@ function Swipe(e) {
 		}
 	}
 	function quickSwipe(index, callback) {
-		console.log(index);
 		if(index < 0 || (!that.e.continues && index >= that.childrenLength)) {
 			return;
 		}
 		
 		that.currentIndex = index;
 		Helper.resetIndex();
-		if(that.isResetIndex) {
-			console.log(that.isResetIndex, that.currentIndex);
-		}
 		if(that.transitions) {
 			Helper.setTransitionYMove(-that.currentIndex*100+"%", 0);
 		} else {
