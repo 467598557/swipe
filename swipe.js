@@ -53,6 +53,10 @@ function Swipe(e) {
 			swipeBodyStyle.OTransform = 'translateY(' + dist+')';
 		},
 		resetIndex: function() {
+			if(!that.e.continues) {
+				return false;
+			};
+
 			switch(that.currentIndex) {
 				case that.childrenLength-1:
 					that.currentIndex = that.e.defaultStartIndex;
@@ -251,13 +255,13 @@ function Swipe(e) {
 				}
 			}
 		})();
-	}
+	};
 	
 	function init() {
 		initParam();
 		/*初始化无限滑动部分*/
 		if(that.e.continues && children.length > 2) {
-			var last = children[children.length - 1]
+			var last = children[children.length - 1];
 			var first = children[0];
 			swipeBody.appendChild(first.cloneNode(true));
 			swipeBody.insertBefore(last.cloneNode(true), first);
@@ -269,7 +273,7 @@ function Swipe(e) {
 		that.childrenLength = children.length;
 
 		Helper.eventHandlers.bindInitedEvent();
-	}
+	};
 	function swipeTo(index) {
 		if(index < 0 || (!that.e.continues && index >= that.childrenLength)) {
 			return;
@@ -285,7 +289,7 @@ function Swipe(e) {
 		} else {
 			Helper.animate.stop().run((parseFloat(swipeBodyStyle.top) || 0), -index*100, time, Helper.eventHandlers.swipeEnd);
 		}
-	}
+	};
 	function quickSwipe(index, callback) {
 		if(index < 0 || (!that.e.continues && index >= that.childrenLength)) {
 			return;
@@ -304,11 +308,10 @@ function Swipe(e) {
 		setTimeout(function() {
 			callback && callback();
 		}, 0);	
-	}
+	};
 
 	init();
 	quickSwipe(that.e.startIndex);
 	
-	this.Helper = Helper;
-	return this;
+	return handler;
 }
