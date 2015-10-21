@@ -75,7 +75,7 @@ function Swipe(e) {
 		getEventPos: function(e, isTouchEnd) {
 			if(that.touch) {
 				return {
-					x: isTouchEnd ? (e.changedTouches[0].pageX || e.changedTouches[0].clientX) : (e.touches[0].pageX || e.touches[0].pageY),
+					x: isTouchEnd ? (e.changedTouches[0].pageX || e.changedTouches[0].clientX) : (e.touches[0].pageX || e.touches[0].clientX),
 					y: isTouchEnd ? (e.changedTouches[0].pageY || e.changedTouches[0].clientY) : (e.touches[0].pageY || e.touches[0].clientY)
 				};
 			}
