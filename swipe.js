@@ -211,8 +211,16 @@ function Swipe(e) {
 						that.swipeHandlerExecing = false;
 						return;
 					}
+
+					// 还原
+					if(!that.e.swipeWhenSwiping && (offsetIndex == DOWN && that.currentIndex == 0 || offsetIndex == UP && that.currentIndex == that.e.defaultEndIndex) ) {
+						that.swipeHandlerExecing = false;
+						swipeTo(that.currentIndex);
+						return;
+					}
 				} else {
 					if(!that.e.swipeWhenSwiping) {
+						swipeTo(that.currentIndex);
 						that.swipeHandlerExecing = false;
 						return;
 					}
