@@ -287,7 +287,7 @@ function Swipe(e) {
 		Helper.eventHandlers.bindInitedEvent();
 	};
 	function swipeTo(index) {
-		if(index < 0 || (!that.e.continues && index >= that.childrenLength)) {
+		if(index < 0 || index !== that.currentIndex || (!that.e.continues && index >= that.childrenLength)) {
 			return;
 		}
 		var prevIndex = that.currentIndex;
@@ -303,7 +303,7 @@ function Swipe(e) {
 		}
 	};
 	function quickSwipe(index, callback) {
-		if(index < 0 || (!that.e.continues && index >= that.childrenLength)) {
+		if(index < 0 || index !== that.currentIndex || (!that.e.continues && index >= that.childrenLength)) {
 			return;
 		}
 		
