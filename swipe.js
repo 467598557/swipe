@@ -213,7 +213,7 @@ function Swipe(e) {
 					}
 
 					// 还原
-					if(!that.e.swipeWhenSwiping && (offsetIndex == DOWN && that.currentIndex == 0 || offsetIndex == UP && that.currentIndex == that.e.defaultEndIndex) ) {
+					if(!that.e.swipeWhenSwiping && !that.e.continues && (offsetIndex == DOWN && that.currentIndex == that.e.defaultStartIndex || offsetIndex == UP && that.currentIndex == that.e.defaultEndIndex) ) {
 						that.swipeHandlerExecing = false;
 						swipeTo(that.currentIndex);
 						return;
@@ -292,7 +292,7 @@ function Swipe(e) {
 		}
 		var prevIndex = that.currentIndex;
 		that.currentIndex = index;
-		that.swiping = true;
+		index !== prevIndex && (that.swiping = true);
 		var moveCostTime = that.e.floowSwipe ? (movePos.time - startPos.time): 0;
 		var time = that.e.swipeTime - moveCostTime;
 		time = time < that.e.swipeTime/3 ? that.e.swipeTime/3 : time;
@@ -325,5 +325,6 @@ function Swipe(e) {
 	init();
 	quickSwipe(that.e.startIndex);
 	
+	handler.that = this;
 	return handler;
 }
